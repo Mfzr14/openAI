@@ -1,5 +1,44 @@
 # Guide Utilisateur de l'API
 
+# Mise de place du projet Laravel
+
+## Prérequis
+
+Avant de commencer, assurez-vous que les éléments suivants sont installés sur votre machine :
+
+PHP (version 7.4 ou supérieure)
+Composer (gestionnaire de dépendances pour PHP)
+Serveur Web (par exemple, Apache ou Nginx)
+Base de données (par exemple, MySQL, PostgreSQL)
+
+## Étapes d'installation 
+
+1. Ouvrez votre terminal ou votre invité de commandes.
+
+2. Exécutez la commande suivant :
+
+```
+composer install
+```
+
+3. Une fois l'installation terminée créez un fichier .env en copiant le fichier .env.exemple : 
+
+```
+cp .env.example .env
+```
+
+4. Génerez une clé d'application Laravel en utilisant la commande suivante : 
+```
+php artisan key:generate
+```
+
+5. Vous pouvez ensuite lancer le serveur de développement intégré à Laravel : 
+```
+php artisan serve
+```
+
+N'oubliez pas de récuperer la base de donnée qui se trouve dans le dossier SQL à la racine du projet
+
 # Authentification
 
 ## Inscription
