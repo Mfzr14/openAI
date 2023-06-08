@@ -35,7 +35,7 @@ class CharacterController extends Controller
 
     private function generateDescription(Character $character, Universe $universe)
     {
-        $prompt = "This is a description of a character in the universe of " . $universe->name . ". The character's name is " . $character->name . ". " . "'image_url' => $character->image_url";
+        $prompt = "Voici la description de mon personnage dans l'univers de " . $universe->name . ". Le nom de mon personnage est " . $character->name . ". " . "'image_url' => $character->image_url";
 
         $openai = OpenAI::client(env('OPENAI_API_KEY'));
 
@@ -56,7 +56,7 @@ class CharacterController extends Controller
 
     private function generateImage(Character $character)
     {
-        $prompt = $character->name . " in the universe of " . $character->universe->name . " photo-realistic, 8k, highly detailed, full length frame, hyperrealism, cinematic, lighting, sharp focus, looking at viewver, portrait, photography, detailed skin"  ;
+        $prompt = $character->name . " dans l'univers de " . $character->universe->name . " photo-realistic, 8k, highly detailed, full length frame, hyperrealism, cinematic, lighting, sharp focus, looking at viewver, portrait, photography, detailed skin"  ;
 
         $openai = OpenAI::client(env('OPENAI_API_KEY'));
 

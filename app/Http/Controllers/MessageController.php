@@ -37,8 +37,7 @@ class MessageController extends Controller
     $character = Character::find($conversation->character_id);
     $universe = Universe::find($character->univers_id);
     $prompt = $message->content;
-    // dd($universe);
-    $context = "$character->name est un personnage de l'univers $universe->name. Mets-toi dans la peau de $character->name dans l'univers $universe->name et réponds à l'utilisateur. Voici la question de l'utilisateur : $prompt";
+    $context = "$character->name est un personnage de l'univers $universe->name. Mets-toi dans la peau de $character->name dans l'univers $universe->name Voici la question de l'utilisateur : $prompt";
 
     $openai = OpenAI::client(env('OPENAI_API_KEY'));
 

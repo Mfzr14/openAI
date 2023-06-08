@@ -19,9 +19,9 @@ use App\Http\Controllers\ConversationController;
 |
 */
 
-Route::group(['middleware' => 'api'], function () {
+Route::middleware('auth')->group(function () {
 
-    Route::post('login', [AuthController::class, 'login']);
+    
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
@@ -36,12 +36,14 @@ Route::group(['middleware' => 'api'], function () {
     Route::delete('/conversation/{id}', [ConversationController::class, 'destroy']);
     Route::post('/conversation/{conversationId}/messages', [MessageController::class, 'store']);
     Route::get('/conversation/{conversationId}/messages', [ConversationController::class, 'getMessages']);
+    Route::post('/universe/{id}/update-name', [UniverseController::class, 'updateName']);
+    Route::post('/characters/{character}/messages', [CharacterController::class, 'createMessage']);
 
 
 
 });
     Route::post('register', [UserController::class, "register"]);
-    Route::post('/characters/{character}/messages', [CharacterController::class, 'createMessage']);
+    Route::post('login', [AuthController::class, 'login']);
 
     
 
