@@ -56,7 +56,7 @@ class UniverseController extends Controller
     $universe->name = $request->input('name');
     $universe->save();
 
-    return response()->json(['message' => 'Nom de l\'univers mis à jour avec succès'], 200);
+    return response()->json(200);
 }
 
   
@@ -71,6 +71,6 @@ class UniverseController extends Controller
 
         $universe->delete();
 
-        return response()->json(['message' => 'Univers supprimé avec succès.'], 200);
+        return response()->json(['message' => 'Univers supprimé avec succès.'], 204);
     }
 }

@@ -115,6 +115,6 @@ class CharacterController extends Controller
 
         $character->delete();
 
-        return response()->json(['message' => 'Personnage supprimé avec succès.'], 200);
+        return response()->json(204);
     }
 }

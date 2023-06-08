@@ -1,0 +1,89 @@
+Creation vue sans jointure
+
+CREATE VIEW `vue sans jointure` AS
+SELECT `id`, `name`, `description`
+FROM `characters`;
+
+Creation vue avec jointure
+
+CREATE VIEW `vue avecd jointure` AS
+SELECT c.id, c.name, un.name as universeName, u.id as userID
+FROM `characters` `c`
+JOIN `users` `u` ON c.user_id  = u.id 
+JOIN `universe` un ON un.user_id = u.id
+
+Creation d'utilisateur : 
+
+CREATE USER 'admin'@'locahost' IDENTIFIED BY "test";
+
+CREATE USER 'pasadmin'@'locahost' IDENTIFIED BY "test";
+
+Privilèges
+
+GRANT ALL PRIVILEGES ON openAI . * TO 'admin'@'localhost';
+
+GRANT SELECT ON openAI . * TO 'pasadmin'@'localhost';
+
+3 REQUETES 
+
+Jointure : 
+
+SELECT c.name AS character_name, u.name AS universe_name
+FROM characters c
+JOIN univers u ON c.univers_id = u.id;
+
+GROUP BY : 
+
+SELECT univers_id, COUNT(*) AS character_count
+FROM characters
+GROUP BY univers_id;
+
+HAVING
+
+SELECT univers_id, COUNT(*) AS character_count
+FROM characters
+GROUP BY univers_id
+HAVING COUNT(*) > 5;
+
+SOUS REQUETE SELECT 
+
+SELECT u.name, (
+    SELECT COUNT(*)
+    FROM characters c
+    WHERE c.univers_id = u.id
+) AS character_count
+FROM universe u;
+
+SOUS REQUETE DANS LE FROM 
+
+SELECT u.name, (
+    SELECT COUNT(*)
+    FROM characters c
+    WHERE c.univers_id = u.id
+) AS character_count
+FROM universe u;
+
+IF 
+
+SELECT name, univers_id,
+       IF(univers_id = 1, ' univers 1', 'Autres univers') AS univers
+FROM characters;
+
+CASE
+
+SELECT name, univers_id,
+       CASE
+           WHEN univers_id = 1 THEN 'Univers A'
+           WHEN univers_id = 2 THEN 'Univers B'
+           ELSE 'Autre univers'
+       END AS universe_message
+FROM characters;
+
+
+
+
+
+
+
+
+

@@ -18,26 +18,21 @@ class UserController extends Controller
 
 
     {
-         // Valider les données de la requête
         $data = $request->validate([
             'name' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:4',
 
-            // Ajoutez ici d'autres règles de validation pour les autres champs
         ]);
 
-        // Créer un nouvel utilisateur
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password'])
         ]);
 
-        // Générer le token JWT
 
 
-        // Retourner une réponse appropriée
         return response()->json([
             'message' => 'Utilisateur créé avec succès',
             'user' => $user,
