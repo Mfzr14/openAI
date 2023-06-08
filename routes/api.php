@@ -39,10 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/universe/{id}/update-name', [UniverseController::class, 'updateName']);
     Route::post('/characters/{character}/messages', [CharacterController::class, 'createMessage']);
     Route::post('/characters/{character}/update-name', [CharacterController::class, 'editCharacter']);
-
-
-
 });
+
     Route::post('register', [UserController::class, "register"]);
     Route::post('login', [AuthController::class, 'login']);
 
