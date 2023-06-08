@@ -36,9 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/conversation/{id}', [ConversationController::class, 'destroy']);
     Route::post('/conversation/{conversationId}/messages', [MessageController::class, 'store']);
     Route::get('/conversation/{conversationId}/messages', [ConversationController::class, 'getMessages']);
-    Route::post('/universe/{id}/update-name', [UniverseController::class, 'updateName']);
+    Route::patch('/universe/{id}/update-name', [UniverseController::class, 'updateName']);
     Route::post('/characters/{character}/messages', [CharacterController::class, 'createMessage']);
-    Route::post('/characters/{character}/update-name', [CharacterController::class, 'editCharacter']);
+    Route::patch('/characters/{character}/update-name', [CharacterController::class, 'editCharacter']);
 });
 
     Route::post('register', [UserController::class, "register"]);

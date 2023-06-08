@@ -87,9 +87,9 @@ Assurez-vous d'inclure l'en-tête "Authorization" dans vos requêtes avec la val
 
 ## Editer un univers
 
-Pour éditer un univers existant, effectuez une requête POST vers l'URL suivante : 
+Pour éditer un univers existant, effectuez une requête PATCH vers l'URL suivante : 
 
-POST [/api/universe/{universe_id}/update-name](routes/api.php)
+PATCH [/api/universe/{universe_id}/update-name](routes/api.php)
 
 Paramètres du corps de la requête (au format JSON) : 
 
@@ -145,9 +145,9 @@ Assurez-vous d'inclure l'en-tête "Authorization" dans vos requêtes avec la val
 
 ## Edition d'un personnage déjà existant
 
-Pour éditer le nom d'un personnage effectuez une requête POST ver l'URL suivante : 
+Pour éditer le nom d'un personnage effectuez une requête PATCH ver l'URL suivante : 
 
-POST [/api/characters/{character}/update-name](/routes/api.php?plain=1L41)
+PATCH [/api/characters/{character}/update-name](/routes/api.php?plain=1L41)
 
 Paramètres du corps de la requête (au format JSON) : 
 
