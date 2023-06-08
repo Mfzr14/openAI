@@ -38,7 +38,7 @@ class UniverseController extends Controller
     }
 
     public function updateName(Request $request, $id)
-{
+    {
     try {
         $this->validate($request, [
             'name' => 'required|string|unique:universe',

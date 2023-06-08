@@ -35,8 +35,7 @@ class CharacterController extends Controller
 
     private function generateDescription(Character $character, Universe $universe)
     {
-        $prompt = "Voici la description de mon personnage dans l'univers de " . $universe->name . ". Le nom de mon personnage est " . $character->name . ". " . "'image_url' => $character->image_url";
-
+        $prompt = "Voici la description de mon personnage dans l'univers de " . $universe->name . ". Le nom de mon personnage est " . $character->name;
         $openai = OpenAI::client(env('OPENAI_API_KEY'));
 
         $response = $openai->completions()->create([
@@ -77,6 +76,33 @@ class CharacterController extends Controller
         $characters = Character::all();
 
         return response()->json(['characters' => $characters], 200);
+    }
+
+
+    public function editCharacter(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required|string'
+        ]);
+
+       try {
+        $this->validate($request, [
+            'name' => 'required|string|unique:universe',
+        ]);
+       } catch (\Throwable $e) {
+        return response()->json(['message' => 'Le nom du personnage existe déjà.'], 422);
+    }
+
+        $character = Character::findOrFail($id);
+
+        if ($character->user_id !== auth()->user()->id) {
+            return response()->json(['message' => 'Action non autorisée.'], 403);
+        }
+
+        $character->name = $request->input('name');
+        $character->save();
+
+        return response()->json(['message' => 'Personnage modifié avec succès.'], 200);
     }
 
     public function deleteCharacter($id)

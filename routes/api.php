@@ -28,16 +28,17 @@ Route::middleware('auth')->group(function () {
     Route::post('universe/{id}/character', [CharacterController::class, 'create']);
     Route::post('universe', [UniverseController::class, "create"]);
     Route::get('/users', [UserController::class, 'getAllUsers']);
-    Route::get('/univers', [UniverseController::class, 'getAllUnivers']);
+    Route::get('/universe', [UniverseController::class, 'getAllUnivers']);
     Route::get('/characters', [CharacterController::class, 'getAllCharacters']);
     Route::delete('/characters/{id}', [CharacterController::class, 'deleteCharacter']);
-    Route::delete('/univers/{id}', [UniverseController::class, 'deleteUniverse']);
+    Route::delete('/universe/{id}', [UniverseController::class, 'deleteUniverse']);
     Route::post('/conversation/{character}', [ConversationController::class, 'store']);
     Route::delete('/conversation/{id}', [ConversationController::class, 'destroy']);
     Route::post('/conversation/{conversationId}/messages', [MessageController::class, 'store']);
     Route::get('/conversation/{conversationId}/messages', [ConversationController::class, 'getMessages']);
     Route::post('/universe/{id}/update-name', [UniverseController::class, 'updateName']);
     Route::post('/characters/{character}/messages', [CharacterController::class, 'createMessage']);
+    Route::post('/characters/{character}/update-name', [CharacterController::class, 'editCharacter']);
 
 
 
