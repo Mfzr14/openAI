@@ -54,21 +54,32 @@ class CharacterController extends Controller
     }
 
     private function generateImage(Character $character)
-    {
-        $prompt = $character->name . " dans l'univers de " . $character->universe->name . " photo-realistic, 8k, highly detailed, full length frame, hyperrealism, cinematic, lighting, sharp focus, looking at viewver, portrait, photography, detailed skin"  ;
+{
+    $prompt = $character->name . " dans l'univers de " . $character->universe->name . " photo-realistic, 8k, highly detailed, full length frame, hyperrealism, cinematic, lighting, sharp focus, looking at viewer, portrait, photography, detailed skin";
 
-        $openai = OpenAI::client(env('OPENAI_API_KEY'));
+    $openai = OpenAI::client(env('OPENAI_API_KEY'));
 
-        $response = $openai->images()->create([
-            'prompt' => $prompt, 
-            'n' => 1,
-            'size' => '512x512',
-        ]);
+    $response = $openai->images()->create([
+        'prompt' => $prompt,
+        'n' => 1,
+        'size' => '512x512',
+    ]);
 
-        $imageURL = $response['data'][0]['url'];
+    $imageURL = $response['data'][0]['url'];
 
-        $character->image_url = $imageURL;
-    }
+    $imageName = uniqid() . '.png';
+
+
+
+
+
+    $imageName = $character->name . '.png';
+    $imagePath = storage_path('app/public/images/' . $imageName);
+    file_put_contents($imagePath, file_get_contents($imageURL));
+    $character->image_url = $imageName;
+
+}
+
 
 
     public function getAllCharacters()
